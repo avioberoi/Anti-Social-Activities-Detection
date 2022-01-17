@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <br> <br>
+                        <br> <br>
+                        <br> <br>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Text Analysis</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST", action="{{url_for('text_prediction')}}">
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" type="text" name='a'  placeholder="Enter Text" />
+                                                <label for="inputEmail">Enter Text</label>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <button type="submit" class="btn btn-primary">Predict !</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <br> <br>
+                                <br> <br>
+                                <br> <br>
+                                <div class="card">
+                                    <div class="card-header">
+                                      Input Text File 
+                                    </div>
+                                    <form>
+                                        <div class="form-group">
+                                          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        </div>
+                                    </form>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+
+    <title>Hashtag Info </title>
+
+
+    <!-- Bootstraps Java Scipts Links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+    <!-- JQuery links  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!--High CHART LIVE  -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    
+
+
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <h3>
+            Displaying Graphs
+            <small class="text-muted">Frequency Distribution and Sentimant Analysis</small>
+          </h3>
+    </div>
+    
+    <br>
+    <br>
+
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Frequency Graph
+                </div>
+                <div class="container-fluid">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="container-fluid" id="data-container1">
+                        </div>
+                    </div>
+                </div>
+            
+                <script>
+                    var chart1;
+                                                    
+                    function requestData1()
+                    {
+                        // Ajax call to get the Data from Flask
+                        var requests1 = $.get('/frequency');
+            
+            
+                        var tm1 = requests1.done(function (result1)
+                        {
+                            var series1 = chart1.series[0],
+                                shift1 = series1.data.length > 20;
+            
+            
+                            // add the point
+                            chart1.series[0].addPoint(result1, true, shift1);
+                                                        
+                            // call it again after one second
+                            setTimeout(requestData1, 2000);
+                        });
+
+                    }
+                </script>
+                <script>
+
+                    $(document).ready(function() {
+                        chart1 = new Highcharts.Chart({
+                            chart: {
+                                renderTo: 'data-container1',
+                                defaultSeriesType: 'spline',
+                                events: {
+                                    load: requestData1
+                                }
+                            },
+                            title: {
+                                text: 'Frequency'
+                            },
+                            xAxis: {
+                                type: 'datetime',
+                                tickPixelInterval: 150,
+                                maxZoom: 20 * 1000
+                            },
+                            yAxis: {
+                                //minPadding: 0.2,
+                                //maxPadding: 0.2,
+                                title: {
+                                    text: 'Number of Tweets',
+                                    margin: 10
+                                }
+                            },
+                            series: [{
+                                color : '#111111',
+                                lineColor: '#1d82b8',
+                                name: 'Time',
+                                data: []
+                            }]
+                        });
+                
+                    });
+                </script>
+            </div>
+        </div>
+        
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Sentiment Graph
+                </div>
+                <div class="container-fluid">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="container-fluid" id="data-container2">
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var chart2;
+            
+                    function requestData2()
+                    {
+                        // Ajax call to get the Data from Flask
+                        var requests2 = $.get('/sentiment');
+            
+            
+                        var tm2 = requests2.done(function (result2)
+                        {
+                                                      
+                            var series2 = chart2.series[0],
+                                shift2 = series2.data.length > 20;
+            
+                            // add the point
+                                chart2.series[0].addPoint(result2, true, shift2);
+            
+                            // call it again after one second
+                            setTimeout(requestData2, 2000);
+                        });
+                    }
+                </script>
+                <script>
+                
+                    $(document).ready(function() {
+                        chart2 = new Highcharts.Chart({
+                            chart: {
+                                renderTo: 'data-container2',
+                                defaultSeriesType: 'spline',
+                                events: {
+                                    load: requestData2
+                                }
+                            },
+                            title: {
+                                text: 'Sentiment'
+                            },
+                            xAxis: {
+                                type: 'datetime',
+                                tickPixelInterval: 150,
+                                maxZoom: 20 * 1000
+                            },
+                            yAxis: {
+                                //minPadding: 0.2,
+                                //maxPadding: 0.2,
+                                title: {
+                                    text: 'Sentiment Value',
+                                    margin: 10
+                                }
+                            },
+                            series: [{
+                                color : '#F8A850',
+                                lineColor: '#C23D23',
+                                name: 'Time',
+                                data: []
+                            }]
+                        });
+                
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          Features
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">For More Information</h5>
+          <p class="card-text">Like Top Users, Hashtags and Tweet Info.</p>
+          <a href="{{url_for('home')}}" class="btn btn-info">Go</a>
+        </div>
+      </div>
+</body>
+
+</html>

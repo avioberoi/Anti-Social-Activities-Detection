@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Main</div>
+                    <a class="nav-link" href="/">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Twitter Dashboard
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Graphs</div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Frequency
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/hashtag">Hashtag</a>
+                            <a class="nav-link" href="/topic">Topic</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        Sentiment
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/hashtag">Hashtag</a>
+                            <a class="nav-link" href="/topic">Topic</a>
+                        </nav>
+                    </div>
+                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <a class="nav-link" href="/text">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Text Analysis
+                    </a>
+                    <a class="nav-link" href="/audio">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Audio Analysis
+                    </a>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                Avi
+            </div>
+        </nav>
+    </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Analysis</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="/index">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Prediction</li>
+                        </ol>
+                                <h1>  PREDICTION :  </h1>
+                                
+                                {%if data == 1%}
+                                <div class="alert alert-danger" role="alert">
+                                    <p class="text-center">Hate Speech</p>
+                                </div>
+                                
+                                <img src="static\hate.png" class="rounded mx-auto d-block" alt="Responsive image">  
+                                
+                                {%elif data == 0%}
+                                <div class="alert alert-success" role="success">
+                                    <p class="text-center">No Hate Involved</p>
+                                </div>
+                                
+                                <img src="static\peace.jpg" class="rounded mx-auto d-block" alt="Responsive image"> 
+                                  
+                                
+                                {%else%}
+                                <div class="alert alert-success" role="success">
+                                    <p class="text-center">Peace</p>
+                                </div>
+                    
+                                <img src="static\peace.jpg" class="rounded mx-auto d-block" alt="Responsive image">  
+
+                                {%endif%}
+                            
+                                <br><br>
+                                <a href='/login'>Analyze More Text</a>
+                                <br><br>
+                                <a href='/audio'>Analyze More Audio Files</a>
+                        
+                            </div>
+                </main>
+       
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,308 @@
+{% extends "layout.html" %}
+{% block body %}
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Main</div>
+                            <a class="nav-link" href="/index">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Twitter Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Graphs</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Frequency
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/hashtag">Hashtag</a>
+                                    <a class="nav-link" href="/topic">Topic</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Sentiment
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/hashtag">Hashtag</a>
+                                    <a class="nav-link" href="/topic">Topic</a>
+                                </nav>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="/text">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Text Analysis
+                            </a>
+                            <a class="nav-link" href="/audio">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Audio Analysis
+                            </a>
+                            <a class="nav-link" href="/img">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Image Analysis
+                            </a>
+                            <a class="nav-link" href="/video">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Video Analysis
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Avi
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Twitter Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Showing Results for India</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-1">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Trending Now</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">
+                                            <table>
+                                                {% for item in list %}
+                                                <tr>
+                                                    <td>
+                                                        {{item}}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-30 col-md-9">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Tweet Info</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">
+                                            <table>
+                                                {% for item in text %}
+                                                <tr>
+                                                    <td>
+                                                        {{item}}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-30 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Top Users</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">
+                                            <table>
+                                                
+                                                <tr>
+                                                    <td>
+                                                        {{mention}}
+                                                    </td>
+                                                </tr>
+                                                
+                                            </table>    
+                                        </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-30 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Hashtags</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">
+                                            <table>
+                                                
+                                                <tr>
+                                                    <td>
+                                                        {{hashtag1}}
+                                                    </td>
+                                                </tr>
+                                                
+                                            </table>
+                                        </a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                         
+            
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Frequency Graph
+                                    </div>
+                                    <div class="container-fluid">
+                                        <!-- Example row of columns -->
+                                        <div class="row">
+                                            <div class="container-fluid" id="data-container1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <script>
+                                        var chart1;
+                                                                        
+                                        function requestData1()
+                                        {
+                                            // Ajax call to get the Data from Flask
+                                            var requests1 = $.get('/freq1');
+                                
+                                
+                                            var tm1 = requests1.done(function (result1)
+                                            {
+                                                var series1 = chart1.series[0],
+                                                    shift1 = series1.data.length > 20;
+                                
+                                
+                                                // add the point
+                                                chart1.series[0].addPoint(result1, true, shift1);
+                                                                            
+                                                // call it again after one second
+                                                setTimeout(requestData1, 2000);
+                                            });
+
+                                        }
+                                    </script>
+                                    <script>
+
+                                        $(document).ready(function() {
+                                            chart1 = new Highcharts.Chart({
+                                                chart: {
+                                                    renderTo: 'data-container1',
+                                                    defaultSeriesType: 'spline',
+                                                    events: {
+                                                        load: requestData1
+                                                    }
+                                                },
+                                                title: {
+                                                    text: 'Frequency'
+                                                },
+                                                xAxis: {
+                                                    type: 'datetime',
+                                                    tickPixelInterval: 150,
+                                                    maxZoom: 20 * 1000
+                                                },
+                                                yAxis: {
+                                                    //minPadding: 0.2,
+                                                    //maxPadding: 0.2,
+                                                    title: {
+                                                        text: 'Number of Tweets',
+                                                        margin: 10
+                                                    }
+                                                },
+                                                series: [{
+                                                    color : '#111111',
+                                                    lineColor: '#1d82b8',
+                                                    name: 'Time',
+                                                    data: []
+                                                }]
+                                            });
+                                    
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Sentiment Graph
+                                    </div>
+                                    <div class="container-fluid">
+                                        <!-- Example row of columns -->
+                                        <div class="row">
+                                            <div class="container-fluid" id="data-container2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var chart2;
+                                
+                                        function requestData2()
+                                        {
+                                            // Ajax call to get the Data from Flask
+                                            var requests2 = $.get('/senti2');
+                                
+                                
+                                            var tm2 = requests2.done(function (result2)
+                                            {
+                                                                          
+                                                var series2 = chart2.series[0],
+                                                    shift2 = series2.data.length > 20;
+                                
+                                                // add the point
+                                                    chart2.series[0].addPoint(result2, true, shift2);
+                                
+                                                // call it again after one second
+                                                setTimeout(requestData2, 2000);
+                                            });
+                                        }
+                                    </script>
+                                    <script>
+                                    
+                                        $(document).ready(function() {
+                                            chart2 = new Highcharts.Chart({
+                                                chart: {
+                                                    renderTo: 'data-container2',
+                                                    defaultSeriesType: 'spline',
+                                                    events: {
+                                                        load: requestData2
+                                                    }
+                                                },
+                                                title: {
+                                                    text: 'Sentiment'
+                                                },
+                                                xAxis: {
+                                                    type: 'datetime',
+                                                    tickPixelInterval: 150,
+                                                    maxZoom: 20 * 1000
+                                                },
+                                                yAxis: {
+                                                    //minPadding: 0.2,
+                                                    //maxPadding: 0.2,
+                                                    title: {
+                                                        text: 'Sentiment Value',
+                                                        margin: 10
+                                                    }
+                                                },
+                                                series: [{
+                                                    color : '#F8A850',
+                                                    lineColor: '#C23D23',
+                                                    name: 'Time',
+                                                    data: []
+                                                }]
+                                            });
+                                    
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+{% endblock %}
